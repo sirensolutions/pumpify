@@ -1,4 +1,4 @@
-var pump = require('pump')
+var Pump = require('pump')
 var inherits = require('inherits')
 var Duplexify = require('duplexify')
 
@@ -36,7 +36,8 @@ var define = function(opts) {
       if (!ended) self.cork()
     })
 
-    pump(streams, function(err) {
+    this.pump = new Pump();
+    this.pump.pump(streams, function(err) {
       self.removeListener('close', onclose)
       if (err) return self.destroy(err.message === 'premature close' ? null : err)
       ended = true
@@ -52,6 +53,12 @@ var define = function(opts) {
     this.setReadable(r)
   }
 
+  Pumpify.prototype.forceDestroy = function() {
+    if (this.pump) {
+      this.pump.forceDestroy()
+    }
+  }
+  
   return Pumpify
 }
 

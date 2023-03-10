@@ -1,12 +1,12 @@
 {
   "name": "pumpify",
-  "version": "2.0.1",
+  "version": "2.0.1-siren-1-force-destroy",
   "description": "Combine an array of streams into a single duplex stream using pump and duplexify",
   "main": "index.js",
   "dependencies": {
     "duplexify": "^4.1.1",
     "inherits": "^2.0.3",
-    "pump": "^3.0.0"
+    "pump": "github:sirensolutions/pump#3.0.0-siren-1-force-destroy"
   },
   "devDependencies": {
     "tape": "^4.10.2",
